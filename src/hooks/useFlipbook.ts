@@ -115,5 +115,6 @@ export function useFlipbook() {
     setTitle,
     setDescription,
     clearPages,
+    setPages,
   };
 }

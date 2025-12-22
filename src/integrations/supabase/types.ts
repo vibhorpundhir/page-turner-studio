@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      flipbooks: {
+        Row: {
+          created_at: string
+          description: string | null
+          fps: number
+          id: string
+          is_public: boolean
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          fps?: number
+          id?: string
+          is_public?: boolean
+          slug: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          fps?: number
+          id?: string
+          is_public?: boolean
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pages: {
+        Row: {
+          created_at: string
+          flipbook_id: string
+          id: string
+          image_url: string
+          page_number: number | null
+          page_order: number
+          source_file_name: string | null
+          source_type: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          flipbook_id: string
+          id?: string
+          image_url: string
+          page_number?: number | null
+          page_order?: number
+          source_file_name?: string | null
+          source_type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          flipbook_id?: string
+          id?: string
+          image_url?: string
+          page_number?: number | null
+          page_order?: number
+          source_file_name?: string | null
+          source_type?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pages_flipbook_id_fkey"
+            columns: ["flipbook_id"]
+            isOneToOne: false
+            referencedRelation: "flipbooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
