@@ -141,7 +141,7 @@ const Index = () => {
       <footer className="py-8 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 Flipbook Maker. Create beautiful animated flipbooks.
+            © 2024 Vibhor Pundhir. Create beautiful animated flipbooks.
           </p>
         </div>
       </footer>
