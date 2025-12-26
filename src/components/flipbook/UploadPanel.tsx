@@ -18,7 +18,7 @@ interface UploadPanelProps {
   onDescriptionChange: (description: string) => void;
   onFpsChange: (fps: number) => void;
   onPublicChange: (isPublic: boolean) => void;
-  onUploadFiles: (files: File[]) => void;
+  onUploadFiles: (files: File[]) => Promise<void>;
   onSave: () => void;
   onClear: () => void;
   pageCount: number;
@@ -54,7 +54,7 @@ export function UploadPanel({
     setIsDragOver(false);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
+  const handleDrop = useCallback(async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
     
@@ -64,17 +64,17 @@ export function UploadPanel({
     
     if (files.length > 0) {
       setIsUploading(true);
-      onUploadFiles(files);
-      setTimeout(() => setIsUploading(false), 1000);
+      await onUploadFiles(files);
+      setIsUploading(false);
     }
   }, [onUploadFiles]);
 
-  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (files.length > 0) {
       setIsUploading(true);
-      onUploadFiles(files);
-      setTimeout(() => setIsUploading(false), 1000);
+      await onUploadFiles(files);
+      setIsUploading(false);
     }
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
