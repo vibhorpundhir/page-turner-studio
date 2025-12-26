@@ -148,6 +148,7 @@ export default function FlipbookBuilder() {
         title={title} 
         onTitleChange={setTitle}
         onNewProject={handleNewProject}
+        onOpenProjects={() => navigate('/my-flipbooks')}
       />
       
       <div className="flex-1 flex overflow-hidden">
